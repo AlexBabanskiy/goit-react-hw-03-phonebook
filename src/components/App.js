@@ -52,7 +52,30 @@ class App extends Component {
     }));
   };
 
+  componentDidMount() {
+    // console.log('App componentDidMount');
+    const contacts = localStorage.getItem('contacts');
+    // console.log(contacts);
+    const parsedContacts = JSON.parse(contacts);
+    // console.log(parsedContacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('App componentDidUpdate');
+    // console.log(prevState);
+    // console.log(this.state);
+
+    if (this.state.contacts !== prevState.contacts) {
+      // console.log('Оновилось поле contacts, записуємо contacts в LocalStorage');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
+    // console.log('App render');
     const { contacts, filter } = this.state;
     const filteredContacts = this.getFilteredContacts();
     const displayContacts = contacts.length > 0;
