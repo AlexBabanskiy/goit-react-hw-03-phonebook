@@ -1,11 +1,12 @@
 import React from 'react';
 import DeleteButton from '../Deletebutton/DeleteButton';
 import PropTypes from 'prop-types';
+import { Li } from './Phonebook.styled';
 
 const ContactItem = ({ id, name, number, onDelete }) => (
-  <li key={id}>
+  <Li key={id}>
     {name}: {number} <DeleteButton onClick={() => onDelete(id)} />
-  </li>
+  </Li>
 );
 
 export default ContactItem;
